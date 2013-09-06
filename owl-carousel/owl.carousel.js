@@ -150,7 +150,7 @@ if ( typeof Object.create !== "function" ) {
 			clearInterval(base.checkVisible);
 			if(!base.$elem.is(":visible")){
 				base.$elem.css({opacity: 0});
-				clearInterval(base.autplaySpeed);
+				clearInterval(base.autoPlaySpeed);
 			} else {
 				return false;
 			}
@@ -237,7 +237,7 @@ if ( typeof Object.create !== "function" ) {
 			}
 			$(window).resize(function(){
 				if(base.options.autoPlay !== false){
-					clearInterval(base.autplaySpeed);
+					clearInterval(base.autoPlaySpeed);
 				}
 				clearTimeout(smallDelay)
 				smallDelay = setTimeout(function(){
@@ -595,7 +595,7 @@ if ( typeof Object.create !== "function" ) {
 		stop: function(){
 			var base = this;
 			base.apStatus = "stop";
-			clearInterval(base.autplaySpeed);
+			clearInterval(base.autoPlaySpeed);
 		},
 
 		checkAp : function(){
@@ -611,8 +611,8 @@ if ( typeof Object.create !== "function" ) {
 			if(base.options.autoPlay === false){
 				return false;
 			}
-			clearInterval(base.autplaySpeed);
-			base.autplaySpeed = setInterval(function(){
+			clearInterval(base.autoPlaySpeed);
+			base.autoPlaySpeed = setInterval(function(){
 				if(base.currentSlide < base.maximumSlide && base.playDirection === "next"){
 					base.next(true);
 				} else if(base.currentSlide === base.maximumSlide){
@@ -817,7 +817,7 @@ if ( typeof Object.create !== "function" ) {
             	}
 
 	        	if(base.options.autoPlay !== false){
-					clearInterval(base.autplaySpeed);
+					clearInterval(base.autoPlaySpeed);
 				}
 
 				if(base.isTouch !== true && !base.owlWrapper.hasClass("grabbing")){
