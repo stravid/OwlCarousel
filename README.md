@@ -12,7 +12,7 @@
 * Choose the number of items to be displayed
 * Multiple Sliders
 * CSS3 3d Transitions
-* Custimizable controlls
+* Custimizable controls
 
 > Tested on IE7, IE8, IE9, IE10, Chrome, Safari, Firefox, Opera, Dolphin, iPhone, iPad, Google Nexus.
 

@@ -94,8 +94,8 @@ if ( typeof Object.create !== "function" ) {
 			var base = this;
 			base.updateItems();
 			base.calculateAll();
-    		base.buildControlls();
-    		base.updateControlls();
+    		base.buildControls();
+    		base.updateControls();
     		base.response();
     		base.moveEvents();
     		base.stopOnHover();
@@ -134,7 +134,7 @@ if ( typeof Object.create !== "function" ) {
 			base.updateItems();
         	base.calculateAll();
 			base.updatePosition();
-			base.updateControlls();
+			base.updateControls();
 			base.eachMoveUpdate();
 		},
 
@@ -340,11 +340,11 @@ if ( typeof Object.create !== "function" ) {
 			}
 		},
 
-		buildControlls : function(){
+		buildControls : function(){
 			var base = this;
 
 			if(base.options.navigation === true || base.options.pagination === true){
-				base.owlControlls = $("<div class=\"owl-controlls\"/>").toggleClass("clickable", !base.isTouch).appendTo(base.$elem);
+				base.owlControls = $("<div class=\"owl-controls\"/>").toggleClass("clickable", !base.isTouch).appendTo(base.$elem);
 			}
 
 			if(base.options.pagination === true){
@@ -358,7 +358,7 @@ if ( typeof Object.create !== "function" ) {
 		buildButtons : function(){
 			var base = this;
 			var buttonsWrapper = $("<div class=\"owl-buttons\"/>")
-			base.owlControlls.append(buttonsWrapper)
+			base.owlControls.append(buttonsWrapper)
 
 			base.buttonPrev = $("<div/>",{
 				"class" : "owl-prev",
@@ -387,9 +387,9 @@ if ( typeof Object.create !== "function" ) {
 		getEvent : function(){
 			var base = this;
 			if (base.isTouch === true){
-				return "touchend.owlControlls";
+				return "touchend.owlControls";
 			} else {
-				return "click.owlControlls";
+				return "click.owlControls";
 			}
 		},
 
@@ -397,7 +397,7 @@ if ( typeof Object.create !== "function" ) {
 			var base = this;
 
 			base.paginationWrapper = $("<div class=\"owl-pagination\"/>");
-			base.owlControlls.append(base.paginationWrapper);
+			base.owlControls.append(base.paginationWrapper);
 
 			base.paginationWrapper.on(base.getEvent(), ".owl-page", function(event){
 				event.preventDefault();
@@ -476,23 +476,23 @@ if ( typeof Object.create !== "function" ) {
 			}
 		},
 
-		updateControlls : function(){
+		updateControls : function(){
 			var base = this;
 			base.updatePagination();
 			base.checkNavigation();
-			if(base.owlControlls) {
+			if(base.owlControls) {
 				if(base.options.items === base.itemsAmount){
-					base.owlControlls.hide();
+					base.owlControls.hide();
 				} else {
-					base.owlControlls.show();
+					base.owlControls.show();
 				}
 			}
 		},
 
-		destroyControlls : function(){
+		destroyControls : function(){
 			var base = this;
-			if(base.owlControlls){
-				base.owlControlls.remove();
+			if(base.owlControls){
+				base.owlControls.remove();
 			}
 		},
 
