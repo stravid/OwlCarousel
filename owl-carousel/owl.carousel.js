@@ -1,6 +1,6 @@
 /*
  *	jQuery OwlCarousel v1.2
- *  
+ *
  *	Copyright (c) 2013 Bartosz Wojciechowski
  *	http://www.owlgraphic.com/owlcarousel
  *
@@ -18,7 +18,7 @@ if ( typeof Object.create !== "function" ) {
     };
 }
 (function( $, window, document, undefined ) {
-	
+
 	var Carousel = {
 		init :function(options, el){
 			var base = this;
@@ -87,9 +87,9 @@ if ( typeof Object.create !== "function" ) {
 	        base.onStartup();
 	        //},0);
 			base.customEvents();
-	        
+
 		},
-		
+
 		onStartup : function(){
 			var base = this;
 			base.updateItems();
@@ -204,19 +204,19 @@ if ( typeof Object.create !== "function" ) {
 
 			if(width > (base.options.itemsDesktop[0] || base.orignalItems) ){
 				 base.options.items = base.orignalItems
-			} 
+			}
 
 			if(width <= base.options.itemsDesktop[0] && base.options.itemsDesktop !== false){
 				base.options.items = base.options.itemsDesktop[1];
-			}  
+			}
 
 			if(width <= base.options.itemsDesktopSmall[0] && base.options.itemsDesktopSmall !== false){
 				base.options.items = base.options.itemsDesktopSmall[1];
-			}  
+			}
 
 			if(width <= base.options.itemsTablet[0]  && base.options.itemsTablet !== false){
 				base.options.items = base.options.itemsTablet[1];
-			} 
+			}
 
 			if(width <= base.options.itemsMobile[0] && base.options.itemsMobile !== false){
 				base.options.items = base.options.itemsMobile[1];
@@ -228,7 +228,7 @@ if ( typeof Object.create !== "function" ) {
 			}
 
 		},
-		
+
 		response : function(){
 			var base = this,
 				smallDelay;
@@ -404,7 +404,7 @@ if ( typeof Object.create !== "function" ) {
 				if(Number($(this).data("owl-page")) !== base.currentSlide){
 					base.goTo( Number($(this).data("owl-page")), true);
 				}
-			});		
+			});
 		},
 
 		updatePagination : function(){
@@ -450,7 +450,7 @@ if ( typeof Object.create !== "function" ) {
 						.find(".owl-page")
 						.removeClass("active");
 					$(this).addClass("active");
-				} 
+				}
 			});
 		},
 
@@ -480,10 +480,12 @@ if ( typeof Object.create !== "function" ) {
 			var base = this;
 			base.updatePagination();
 			base.checkNavigation();
-			if(base.options.items === base.itemsAmount){
-				base.owlControlls.hide();
-			} else {
-				base.owlControlls.show();
+			if(base.owlControlls) {
+				if(base.options.items === base.itemsAmount){
+					base.owlControlls.hide();
+				} else {
+					base.owlControlls.show();
+				}
 			}
 		},
 
@@ -493,7 +495,7 @@ if ( typeof Object.create !== "function" ) {
 				base.owlControlls.remove();
 			}
 		},
-		
+
 		next : function(speed){
 			var base = this;
 			base.currentSlide += base.options.scrollPerPageNav === true ? base.options.items : 1;
@@ -536,7 +538,7 @@ if ( typeof Object.create !== "function" ) {
         	}
 			if(position >= base.maximumSlide){
 				position = base.maximumSlide;
-			} 
+			}
 			else if( position <= 0 ){
 				position = 0;
 			}
@@ -626,7 +628,7 @@ if ( typeof Object.create !== "function" ) {
 					base.playDirection = "next";
 					base.next(true);
 				}
-			},base.options.autoPlay)	
+			},base.options.autoPlay)
 		},
 
 		swapTransitionSpeed : function(action){
@@ -641,7 +643,7 @@ if ( typeof Object.create !== "function" ) {
 		},
 
         addTransition : function(speed){
-        	var base = this;			
+        	var base = this;
         	return {
                 "-webkit-transition": "all "+ speed +"ms ease",
 				"-moz-transition": "all "+ speed +"ms ease",
@@ -659,7 +661,7 @@ if ( typeof Object.create !== "function" ) {
         },
 
         doTranslate : function(pixels){
-			return { 
+			return {
                 "-webkit-transform": "translate3d("+pixels+"px, 0px, 0px)",
                 "-moz-transform": "translate3d("+pixels+"px, 0px, 0px)",
                 "-o-transform": "translate3d("+pixels+"px, 0px, 0px)",
@@ -694,7 +696,7 @@ if ( typeof Object.create !== "function" ) {
 
 		support3d : function(){
 				var base = this;
-				
+
 		    	var sTranslate3D = "translate3d(0px, 0px, 0px)";
 			    var eTemp = document.createElement("div");
 			    eTemp.style.cssText = "  -moz-transform:"    + sTranslate3D +
@@ -708,7 +710,7 @@ if ( typeof Object.create !== "function" ) {
 			    base.support3d = bHasSupport
 			    return bHasSupport;
 		},
-		
+
 		checkTouch : function(){
 			var base = this;
 			base.isTouch = ("ontouchstart" in document.documentElement);
@@ -809,7 +811,7 @@ if ( typeof Object.create !== "function" ) {
 
 	        	if(base.isCssFinish === false){
             		return false;
-            	} 
+            	}
             	if(base.isCss3Finish === false){
             		return false;
             	}
@@ -829,7 +831,7 @@ if ( typeof Object.create !== "function" ) {
 
 				var position = $(this).position();
 				locals.relativePos = position.left;
-				
+
             	locals.offsetX = getTouches(event).x - position.left;
             	locals.offsetY = getTouches(event).y - position.top;
 
@@ -837,7 +839,7 @@ if ( typeof Object.create !== "function" ) {
 
 	        	locals.sliding = false;
 	        	locals.targetElement = event.target || event.srcElement;
-	        	
+
 			}
 
 			function dragMove(event){
@@ -897,7 +899,7 @@ if ( typeof Object.create !== "function" ) {
      				}
             	}
             }
-			base.$elem.on(base.ev_types["start"], ".owl-wrapper", dragStart); 
+			base.$elem.on(base.ev_types["start"], ".owl-wrapper", dragStart);
 		},
 
 		clearEvents : function(){
@@ -931,7 +933,7 @@ if ( typeof Object.create !== "function" ) {
 				if( goal - (base.itemWidth/20) > array[i+1] && goal - (base.itemWidth/20)< v && base.moveDirection() === "left") {
 					closest = v;
 					base.currentSlide = i;
-				} 
+				}
 				else if (goal + (base.itemWidth/20) < v && goal + (base.itemWidth/20) > array[i+1] && base.moveDirection() === "right"){
 					closest = array[i+1];
 					base.currentSlide = i+1;
@@ -971,7 +973,7 @@ if ( typeof Object.create !== "function" ) {
 				base.hoverStatus = "stop";
 			});
 		},
-		
+
 		stopOnHover : function(){
 			var base = this;
 			if(base.options.stopOnHover === true && base.isTouch === false && base.options.autoPlay !== false){
@@ -1104,7 +1106,7 @@ if ( typeof Object.create !== "function" ) {
     	beforeMove: false,
     	afterMove: false,
     	afterAction : false
-    	
+
 
     };
 
